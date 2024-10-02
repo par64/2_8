@@ -85,3 +85,52 @@ console.log(rect);
 //Сделал только вывод размера элемента div,
 //Но он меняется при изменении размеров окна браузера
 btmDiv.onclick = () => alert(`Ширина элемента ${rect.width}, Высота ${rect.height}`);
+
+
+// Дополнительное задание:
+// Создайте простую форму с полями ввода (например, имя, email) и кнопкой
+// отправки.
+// Подсказка: При нажатии на кнопку проверяйте, чтобы все поля были заполнены,
+// используя  if -условия. Для получения значений полей используйте  .value .
+// Выведите сообщение, если какое-то из полей пустое.
+const form = document.getElementById('myForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const error = document.getElementById('error');
+let isErrName = true;
+let isErrEmail = true;
+let errNameText = "Поле Name не заполнено";
+let errEmailText = "Поле Email не заполнено";
+
+
+nameInput.addEventListener('input', () => {
+    if(!nameInput.value){
+        errNameText = "Поле Name не заполнено";
+        isErrName = true;
+    }else {
+        errNameText = "";
+        isErrName = false;
+    }
+});
+
+emailInput.addEventListener('input', () => {
+    if(!emailInput.value){
+        errEmailText = "Поле Email не заполнено";
+        isErrEmail = true;
+    }else {
+        errEmailText = "";
+        isErrEmail = false;
+    }
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (isErrName || isErrEmail) {
+        error.textContent = `${errNameText} ${errEmailText}`
+    } else {
+        error.textContent = "";
+        console.log("Все отработало успешно");
+    }
+});
+
+
